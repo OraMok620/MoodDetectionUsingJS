@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Input Drag n Drop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="musicList.css">
+    <script src="musicList.js" defer></script>
+</head>
+<body>
+    <main>
+        <section class="upload-section">
+            <button id="uploadBtn">Upload MP3 Files</button>
+            <input type="file" id="fileInput" accept=".mp3,audio/mpeg" multiple hidden>
+        </section>
+        <section id="audioList">
+        <!-- Uploaded files will appear here -->
+        </section>
+    </main>
+</body>
+</html>
