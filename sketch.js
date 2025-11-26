@@ -2,7 +2,6 @@ let faceApi; //hold the ml5.js Face API model used to detect face expressions.
 let detections = []; //Array that used to store the detection result
 
 let video; //Webcam
-let canvas; //Area where the video and visual overlays are held.
 
 let emotionCounts = {
   neutral: 0,
@@ -16,11 +15,6 @@ let emotionCounts = {
 let startTime;
 
 function setup() {
-  canvas = createCanvas(480, 360);
-  canvas.parent(document.querySelector('.container')); 
-  canvas.id("canvas");
-  //set up the canvas with details, how the layout?
-
   video = createCapture(VIDEO);
   video.id("video")
   video.size(width, height);
@@ -91,13 +85,14 @@ function drawExpressions(detections, x, y, textYSpace) {
     strokeWeight(2);
     stroke(255);
 
-    text("neutral:" + nf(neutral * 100, 2, 2) + "%", x, y);
-    text("happiness:" + nf(happy * 100, 2, 2) + "%", x, y + textYSpace);
-    text("anger:" + nf(angry * 100, 2, 2) + "%", x, y + textYSpace * 2);
-    text("sad:" + nf(sad * 100, 2, 2) + "%", x, y + textYSpace * 3);
-    text("disgusted:" + nf(disgusted * 100, 2, 2) + "%", x, y + textYSpace * 4);
-    text("surprised:" + nf(surprised * 100, 2, 2) + "%", x, y + textYSpace * 5);
-    text("fear:" + nf(fearful * 100, 2, 2) + "%", x, y + textYSpace * 6);
+    //To check if the mood detection is it work
+    console.log("neutral:" + nf(neutral * 100, 2, 2) + "%");
+    console.log("happiness:" + nf(happy * 100, 2, 2) + "%");
+    console.log("anger:" + nf(angry * 100, 2, 2) + "%");
+    console.log("sad:" + nf(sad * 100, 2, 2) + "%");
+    console.log("disgusted:" + nf(disgusted * 100, 2, 2) + "%");
+    console.log("surprised:" + nf(surprised * 100, 2, 2) + "%");
+    console.log("fear:" + nf(fearful * 100, 2, 2) + "%");
 
     // Find the current dominant emotion in this frame
     let currentEmotion = "neutral";
@@ -154,20 +149,10 @@ function drawExpressions(detections, x, y, textYSpace) {
       for (let e in emotionCounts) emotionCounts[e] = 0;
       startTime = millis();
     }
-  } else {
-    text("neutral:", x, y);
-    text("happiness:", x, y + textYSpace);
-    text("anger:", x, y + textYSpace * 2);
-    text("sad:", x, y + textYSpace * 3);
-    text("disgusted:", x, y + textYSpace * 4);
-    text("surprised:", x, y + textYSpace * 5);
-    text("fear:", x, y + textYSpace * 6);
   }
 }
 
-
 function draw() {
-  image(video, 0, 0, width, height);
   drawExpressions(detections, 20, 250, 14);
 }
 
